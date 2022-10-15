@@ -1,6 +1,6 @@
 variable "profile" {
   description = "AWS Profile"
-  default     = "ghactions"
+  default     = "root"
 }
 
 variable "region" {

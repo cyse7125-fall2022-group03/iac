@@ -113,9 +113,9 @@ resource "null_resource" "enable_service_usage_api" {
   provisioner "local-exec" {
     command = "export AWS_PROFILE=kops"
   }
-  # provisioner "local-exec" {
-  #   command = "kops create cluster --name=${NAME} --cloud=aws --master-zones=${ZONES} --zones=${ZONES} --node-count=3 --topology=private --networking=calico --node-size=${NODE_SIZE} --kubernetes-version=1.22.15 --master-size=${MASTER_SIZE} --master-image=ami-08c40ec9ead489470 --node-image=ami-08c40ec9ead489470 --ssh-public-key=/home/roadrunner/.ssh/kops-key.pub --bastion=true --yes --vpc=${aws_vpc.kops_vpc.id} --out=../modules/kops --target=terraform --yes"
-  # }
+   provisioner "local-exec" {
+    command = "kops create cluster --name=${var.domain_name} --cloud=aws --master-zones=${var.zones} --zones=${var.zones} --node-count=3 --topology=private --networking=calico --node-size=${var.node_size} --kubernetes-version=1.22.15 --master-size=${var.master_size} --master-image=ami-08c40ec9ead489470 --node-image=ami-08c40ec9ead489470 --ssh-public-key=${var.ssh_public_key_path} --bastion=true --state=s3://${var.s3_bucket_name} --vpc=${aws_vpc.kops_vpc.id} --out=./kops --target=terraform --yes"
+  }
 
 }
 
