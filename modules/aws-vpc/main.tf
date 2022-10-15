@@ -141,20 +141,20 @@ resource "aws_db_subnet_group" "rds_db_subnet_group" {
 
 }
 
-# resource "aws_db_instance" "todo_database" {
+resource "aws_db_instance" "todo_database" {
 
-#   allocated_storage = var.setting.database.allocated_storage
-#   engine            = var.setting.database.engine
-#   engine_version    = var.setting.database.engine_version
-#   instance_class    = var.setting.database.instance_class
-#   db_name           = var.setting.database.db_name
-#   username          = var.db_username
-#   password          = var.db_password
+  allocated_storage = var.setting.database.allocated_storage
+  engine            = var.setting.database.engine
+  engine_version    = var.setting.database.engine_version
+  instance_class    = var.setting.database.instance_class
+  db_name           = var.setting.database.db_name
+  username          = var.db_username
+  password          = var.db_password
 
-#   db_subnet_group_name   = aws_db_subnet_group.rds_db_subnet_group.id
-#   vpc_security_group_ids = [aws_security_group.rds_db_sg.id]
+  db_subnet_group_name   = aws_db_subnet_group.rds_db_subnet_group.id
+  vpc_security_group_ids = [aws_security_group.rds_db_sg.id]
 
-#   skip_final_snapshot = true
+  skip_final_snapshot = true
 
 
-# }
+}
