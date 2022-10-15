@@ -78,7 +78,7 @@ variable "owner_profile" {
 
 variable "accepter_profile" {
   description = "AWS Profile"
-  default     = "ghactions"
+  default     = "root"
 }
 
 variable "owner_vpc_id" {
@@ -102,7 +102,7 @@ variable "username" {
 
 variable "profile" {
   type        = string
-  default     = "ghactions"
+  default     = "root"
   description = "Git profile to be used for running the script"
 }
 
@@ -110,7 +110,7 @@ variable "profile" {
 
 variable "s3_bucket_name" {
   type        = string
-  default     = "ketkikule.me"
+  default     = "sandeepwagh.me"
   description = "Name of the s3 bucket to be created for kOps"
 }
 
@@ -134,7 +134,7 @@ variable "zones" {
 
 variable "domain_name" {
   type        = string
-  default     = "aws.ketkikule.me"
+  default     = "aws.sandeepwagh.me"
   description = "Name of the kops cluster to be created for kOps"
 }
 
