@@ -86,13 +86,13 @@ variable "db_password" {
 
 variable "owner_profile" {
   description = "AWS Profile"
-  default     = "root"
+  default     = "ghactions"
 }
 
 
 variable "accepter_profile" {
   description = "AWS Profile"
-  default     = "root"
+  default     = "ghactions"
 }
 
 variable "owner_vpc_id" {
@@ -116,7 +116,7 @@ variable "username" {
 
 variable "profile" {
   type        = string
-  default     = "root"
+  default     = "ghactions"
   description = "Git profile to be used for running the script"
 }
 
@@ -124,7 +124,7 @@ variable "profile" {
 
 variable "s3_bucket_name" {
   type        = string
-  default     = "sandeepwagh.me"
+  default     = "ketkikule.me"
   description = "Name of the s3 bucket to be created for kOps"
 }
 
@@ -148,13 +148,13 @@ variable "zones" {
 
 variable "domain_name" {
   type        = string
-  default     = "aws.sandeepwagh.me"
+  default     = "aws.ketkikule.me"
   description = "Name of the kops cluster to be created for kOps"
 }
 
 variable "ssh_public_key_path" {
   type        = string
-  default     = "/Users/sandy/.ssh/kops-key.pub"
+  default     = "/home/roadrunner/.ssh/kops-key.pub"
   description = "Name of the kops cluster to be created for kOps"
 }
 

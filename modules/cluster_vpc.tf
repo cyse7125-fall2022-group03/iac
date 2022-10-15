@@ -67,7 +67,7 @@ resource "aws_s3_bucket_acl" "kops_bucket_acl" {
 //KOps VPC
 
 resource "aws_vpc" "kops_vpc" {
-
+name = "kops_vpc"
 cidr_block = var.vpc_cidr_block
 enable_dns_support = true #gives you an internal domain name
 enable_dns_hostnames = true #gives you an internal host name
