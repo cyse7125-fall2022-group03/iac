@@ -143,6 +143,14 @@ resource "aws_security_group" "rds_db_sg" {
     security_groups = [aws_security_group.rds_db_web_sg.id]
   }
 
+   ingress {
+    description     = "Allow MySql traffic from the web page"
+    from_port       = "3306"
+    to_port         = "3306"
+    protocol        = "tcp"
+    cidr_blocks = [ var.vpc_cidr_block]
+  }
+
   tags = {
     Name = "rds_db_sg"
   }

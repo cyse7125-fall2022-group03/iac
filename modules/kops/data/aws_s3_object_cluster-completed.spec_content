@@ -1,7 +1,7 @@
 apiVersion: kops.k8s.io/v1alpha2
 kind: Cluster
 metadata:
-  creationTimestamp: "2022-10-20T17:05:21Z"
+  creationTimestamp: "2022-10-20T21:38:05Z"
   name: aws.sandeepwagh.me
 spec:
   api:
@@ -201,7 +201,7 @@ spec:
     shutdownGracePeriodCriticalPods: 10s
   masterPublicName: api.aws.sandeepwagh.me
   networkCIDR: 172.168.0.0/16
-  networkID: vpc-064862cf59dda96ad
+  networkID: vpc-0eedac52e2a565246
   networking:
     calico:
       encapsulationMode: ipip

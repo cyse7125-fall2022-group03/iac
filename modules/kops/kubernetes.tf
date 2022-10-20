@@ -24,7 +24,7 @@ locals {
   subnet_utility-us-east-1a_id      = aws_subnet.utility-us-east-1a-aws-sandeepwagh-me.id
   subnet_utility-us-east-1b_id      = aws_subnet.utility-us-east-1b-aws-sandeepwagh-me.id
   subnet_utility-us-east-1c_id      = aws_subnet.utility-us-east-1c-aws-sandeepwagh-me.id
-  vpc_id                            = "vpc-064862cf59dda96ad"
+  vpc_id                            = "vpc-0eedac52e2a565246"
 }
 
 output "bastion_autoscaling_group_ids" {
@@ -128,7 +128,7 @@ output "subnet_utility-us-east-1c_id" {
 }
 
 output "vpc_id" {
-  value = "vpc-064862cf59dda96ad"
+  value = "vpc-0eedac52e2a565246"
 }
 
 provider "aws" {
@@ -1372,13 +1372,13 @@ resource "aws_nat_gateway" "us-east-1c-aws-sandeepwagh-me" {
 
 resource "aws_route" "route-0-0-0-0--0" {
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = "igw-0fc9fe606a3a2236b"
+  gateway_id             = "igw-0a6fa33ca9ac6b01b"
   route_table_id         = aws_route_table.aws-sandeepwagh-me.id
 }
 
 resource "aws_route" "route-__--0" {
   destination_ipv6_cidr_block = "::/0"
-  gateway_id                  = "igw-0fc9fe606a3a2236b"
+  gateway_id                  = "igw-0a6fa33ca9ac6b01b"
   route_table_id              = aws_route_table.aws-sandeepwagh-me.id
 }
 
@@ -1429,7 +1429,7 @@ resource "aws_route_table" "aws-sandeepwagh-me" {
     "kubernetes.io/cluster/aws.sandeepwagh.me" = "owned"
     "kubernetes.io/kops/role"                  = "public"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_route_table" "private-us-east-1a-aws-sandeepwagh-me" {
@@ -1439,7 +1439,7 @@ resource "aws_route_table" "private-us-east-1a-aws-sandeepwagh-me" {
     "kubernetes.io/cluster/aws.sandeepwagh.me" = "owned"
     "kubernetes.io/kops/role"                  = "private-us-east-1a"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_route_table" "private-us-east-1b-aws-sandeepwagh-me" {
@@ -1449,7 +1449,7 @@ resource "aws_route_table" "private-us-east-1b-aws-sandeepwagh-me" {
     "kubernetes.io/cluster/aws.sandeepwagh.me" = "owned"
     "kubernetes.io/kops/role"                  = "private-us-east-1b"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_route_table" "private-us-east-1c-aws-sandeepwagh-me" {
@@ -1459,7 +1459,7 @@ resource "aws_route_table" "private-us-east-1c-aws-sandeepwagh-me" {
     "kubernetes.io/cluster/aws.sandeepwagh.me" = "owned"
     "kubernetes.io/kops/role"                  = "private-us-east-1c"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_route_table_association" "private-us-east-1a-aws-sandeepwagh-me" {
@@ -1708,7 +1708,7 @@ resource "aws_security_group" "api-elb-aws-sandeepwagh-me" {
     "Name"                                     = "api-elb.aws.sandeepwagh.me"
     "kubernetes.io/cluster/aws.sandeepwagh.me" = "owned"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_security_group" "bastion-aws-sandeepwagh-me" {
@@ -1719,7 +1719,7 @@ resource "aws_security_group" "bastion-aws-sandeepwagh-me" {
     "Name"                                     = "bastion.aws.sandeepwagh.me"
     "kubernetes.io/cluster/aws.sandeepwagh.me" = "owned"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_security_group" "bastion-elb-aws-sandeepwagh-me" {
@@ -1730,7 +1730,7 @@ resource "aws_security_group" "bastion-elb-aws-sandeepwagh-me" {
     "Name"                                     = "bastion-elb.aws.sandeepwagh.me"
     "kubernetes.io/cluster/aws.sandeepwagh.me" = "owned"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_security_group" "masters-aws-sandeepwagh-me" {
@@ -1741,7 +1741,7 @@ resource "aws_security_group" "masters-aws-sandeepwagh-me" {
     "Name"                                     = "masters.aws.sandeepwagh.me"
     "kubernetes.io/cluster/aws.sandeepwagh.me" = "owned"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_security_group" "nodes-aws-sandeepwagh-me" {
@@ -1752,7 +1752,7 @@ resource "aws_security_group" "nodes-aws-sandeepwagh-me" {
     "Name"                                     = "nodes.aws.sandeepwagh.me"
     "kubernetes.io/cluster/aws.sandeepwagh.me" = "owned"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_security_group_rule" "from-0-0-0-0--0-ingress-tcp-22to22-bastion-elb-aws-sandeepwagh-me" {
@@ -2020,7 +2020,7 @@ resource "aws_subnet" "us-east-1a-aws-sandeepwagh-me" {
     "kubernetes.io/cluster/aws.sandeepwagh.me"     = "owned"
     "kubernetes.io/role/internal-elb"              = "1"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_subnet" "us-east-1b-aws-sandeepwagh-me" {
@@ -2036,7 +2036,7 @@ resource "aws_subnet" "us-east-1b-aws-sandeepwagh-me" {
     "kubernetes.io/cluster/aws.sandeepwagh.me"     = "owned"
     "kubernetes.io/role/internal-elb"              = "1"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_subnet" "us-east-1c-aws-sandeepwagh-me" {
@@ -2052,7 +2052,7 @@ resource "aws_subnet" "us-east-1c-aws-sandeepwagh-me" {
     "kubernetes.io/cluster/aws.sandeepwagh.me"     = "owned"
     "kubernetes.io/role/internal-elb"              = "1"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_subnet" "utility-us-east-1a-aws-sandeepwagh-me" {
@@ -2065,7 +2065,7 @@ resource "aws_subnet" "utility-us-east-1a-aws-sandeepwagh-me" {
     "kubernetes.io/cluster/aws.sandeepwagh.me" = "owned"
     "kubernetes.io/role/elb"                   = "1"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_subnet" "utility-us-east-1b-aws-sandeepwagh-me" {
@@ -2078,7 +2078,7 @@ resource "aws_subnet" "utility-us-east-1b-aws-sandeepwagh-me" {
     "kubernetes.io/cluster/aws.sandeepwagh.me" = "owned"
     "kubernetes.io/role/elb"                   = "1"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 resource "aws_subnet" "utility-us-east-1c-aws-sandeepwagh-me" {
@@ -2091,7 +2091,7 @@ resource "aws_subnet" "utility-us-east-1c-aws-sandeepwagh-me" {
     "kubernetes.io/cluster/aws.sandeepwagh.me" = "owned"
     "kubernetes.io/role/elb"                   = "1"
   }
-  vpc_id = "vpc-064862cf59dda96ad"
+  vpc_id = "vpc-0eedac52e2a565246"
 }
 
 terraform {
