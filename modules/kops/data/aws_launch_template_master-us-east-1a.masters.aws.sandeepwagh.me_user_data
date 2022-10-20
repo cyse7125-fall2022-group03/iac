@@ -266,7 +266,7 @@ CloudProvider: aws
 ConfigBase: s3://sandeepwagh.me/aws.sandeepwagh.me
 InstanceGroupName: master-us-east-1a
 InstanceGroupRole: Master
-NodeupConfigHash: fLhvJjwENyEFzRqbbZ5HoQHC3eY/4bExrvW+L/0HeEM=
+NodeupConfigHash: ZJmCSaY6nJYcLpJrQUsUqw2MRVdnn1U9K93TK7u2jzY=
 
 __EOF_KUBE_ENV
 

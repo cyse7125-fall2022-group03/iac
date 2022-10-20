@@ -44,18 +44,53 @@ data "aws_route_tables" "requester" {
   vpc_id = data.aws_vpc.cluster_vpc.id
 }
 
-resource "aws_route" "requestor_route" {
+resource "aws_route" "requestor_route1" {
   //count                     = length(data.aws_route_tables.requester.ids)
   route_table_id            = tolist(data.aws_route_tables.requester.ids)[0]
   destination_cidr_block    = data.aws_vpc.rds_vpc.cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection.requestor.id
 }
 
-resource "aws_route" "accepter_route" {
+resource "aws_route" "accepter_route1" {
   // count                     = length(data.aws_route_tables.accepter.ids)
   route_table_id            = tolist(data.aws_route_tables.accepter.ids)[0]
   destination_cidr_block    = data.aws_vpc.cluster_vpc.cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection.requestor.id
 }
 
+
+resource "aws_route" "requestor_route2" {
+  //count                     = length(data.aws_route_tables.requester.ids)
+  route_table_id            = tolist(data.aws_route_tables.requester.ids)[1]
+  destination_cidr_block    = data.aws_vpc.rds_vpc.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.requestor.id
+}
+
+resource "aws_route" "accepter_route2" {
+  // count                     = length(data.aws_route_tables.accepter.ids)
+  route_table_id            = tolist(data.aws_route_tables.accepter.ids)[1]
+  destination_cidr_block    = data.aws_vpc.cluster_vpc.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.requestor.id
+}
+
+resource "aws_route" "requestor_route3" {
+  //count                     = length(data.aws_route_tables.requester.ids)
+  route_table_id            = tolist(data.aws_route_tables.requester.ids)[2]
+  destination_cidr_block    = data.aws_vpc.rds_vpc.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.requestor.id
+}
+
+resource "aws_route" "requestor_route4" {
+  //count                     = length(data.aws_route_tables.requester.ids)
+  route_table_id            = tolist(data.aws_route_tables.requester.ids)[3]
+  destination_cidr_block    = data.aws_vpc.rds_vpc.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.requestor.id
+}
+
+resource "aws_route" "requestor_route5" {
+  //count                     = length(data.aws_route_tables.requester.ids)
+  route_table_id            = tolist(data.aws_route_tables.requester.ids)[4]
+  destination_cidr_block    = data.aws_vpc.rds_vpc.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.requestor.id
+}
 

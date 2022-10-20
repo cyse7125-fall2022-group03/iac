@@ -22,46 +22,54 @@ resource "aws_internet_gateway" "rds_igw" {
   }
 }
 
-resource "aws_subnet" "rds_public_subnet" {
-  vpc_id                  = aws_vpc.rds_vpc.id
-  cidr_block              = var.public_subnet_cidr_bloc
-  map_public_ip_on_launch = true //it makes this a public subnet
-  availability_zone       = data.aws_availability_zones.available.names[0]
-  tags = {
-    Name = "rds-public-subnet"
-  }
-}
+# resource "aws_subnet" "rds_public_subnet" {
+#   vpc_id                  = aws_vpc.rds_vpc.id
+#   cidr_block              = var.public_subnet_cidr_bloc
+#   map_public_ip_on_launch = true //it makes this a public subnet
+#   availability_zone       = data.aws_availability_zones.available.names[0]
+#   tags = {
+#     Name = "rds-public-subnet"
+#   }
+# }
 
-resource "aws_subnet" "rds_private_subnet" {
+resource "aws_subnet" "rds_private_subnet_1" {
   vpc_id            = aws_vpc.rds_vpc.id
-  count             = var.subnet_count.private
-  cidr_block        = var.private_subnet_cidr_bloc[count.index]
-  availability_zone = data.aws_availability_zones.available.names[count.index]
+  cidr_block        = var.rds_private_subnet_cidr_blc_1
+  availability_zone = var.rds_private_subnet_availabilityzone_1
   tags = {
-    Name = "rds-private-subnet"
+    Name = "rds-private-subnet-1"
   }
 }
 
-
-
-resource "aws_route_table" "rds_public_rt" {
-  vpc_id = aws_vpc.rds_vpc.id
-  route {
-    //associated subnet can reach everywhere 
-    cidr_block = "0.0.0.0/0" //CRT uses this IGW to reach 
-    gateway_id = aws_internet_gateway.rds_igw.id
-  }
-
+resource "aws_subnet" "rds_private_subnet_2" {
+  vpc_id            = aws_vpc.rds_vpc.id
+  cidr_block        = var.rds_private_subnet_cidr_blc_2
+  availability_zone = var.rds_private_subnet_availabilityzone_2
   tags = {
-    Name = "rds-public-rt"
+    Name = "rds-private-subnet-2"
   }
-
 }
 
-resource "aws_route_table_association" "public" {
-  subnet_id      = aws_subnet.rds_public_subnet.id
-  route_table_id = aws_route_table.rds_public_rt.id
-}
+
+
+# resource "aws_route_table" "rds_public_rt" {
+#   vpc_id = aws_vpc.rds_vpc.id
+#   route {
+#     //associated subnet can reach everywhere 
+#     cidr_block = "0.0.0.0/0" //CRT uses this IGW to reach 
+#     gateway_id = aws_internet_gateway.rds_igw.id
+#   }
+
+#   tags = {
+#     Name = "rds-public-rt"
+#   }
+
+# }
+
+# resource "aws_route_table_association" "public" {
+#   subnet_id      = aws_subnet.rds_public_subnet.id
+#   route_table_id = aws_route_table.rds_public_rt.id
+# }
 
 
 resource "aws_route_table" "rds_private_rt" {
@@ -69,10 +77,19 @@ resource "aws_route_table" "rds_private_rt" {
 
 }
 
-resource "aws_route_table_association" "private" {
-  count          = var.subnet_count.private
+resource "aws_route_table_association" "private_1" {
+ // count          = var.subnet_count.private
   route_table_id = aws_route_table.rds_private_rt.id
-  subnet_id      = aws_subnet.rds_private_subnet[count.index].id
+  subnet_id      = aws_subnet.rds_private_subnet_1.id
+
+
+}
+
+resource "aws_route_table_association" "private_2" {
+ // count          = var.subnet_count.private
+  route_table_id = aws_route_table.rds_private_rt.id
+  subnet_id      = aws_subnet.rds_private_subnet_2.id
+
 
 }
 
@@ -98,13 +115,13 @@ resource "aws_security_group" "rds_db_web_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  egress {
-    description = "allow all outbound traffic"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  # egress {
+  #   description = "allow all outbound traffic"
+  #   from_port   = 0
+  #   to_port     = 0
+  #   protocol    = "-1"
+  #   cidr_blocks = ["0.0.0.0/0"]
+  # }
 
   tags = {
     Name = "rds_db_web_sg"
@@ -137,7 +154,7 @@ resource "aws_db_subnet_group" "rds_db_subnet_group" {
   description = "db subnet group for todo"
 
 
-  subnet_ids = [for subnet in aws_subnet.rds_private_subnet : subnet.id]
+  subnet_ids = [aws_subnet.rds_private_subnet_1.id,aws_subnet.rds_private_subnet_2.id ]
 
 }
 
