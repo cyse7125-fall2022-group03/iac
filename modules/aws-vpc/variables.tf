@@ -4,6 +4,12 @@ variable "rds_vpc_cidr_block" {
   default     = "10.0.0.0/16"
 }
 
+variable "vpc_cidr_block" {
+  description = "The region in which to create the VPC network"
+  type        = string
+  default     = "172.168.0.0/16"
+}
+
 # variable "subnet_count" {
 #   description = "Number of subnet"
 #   type        = map(number)
