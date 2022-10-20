@@ -3,32 +3,33 @@ provider "aws" {
   profile = var.profile
 }
 
-module "aws-vpc" {
-  source = "./modules/aws-vpc"
+module "kops" {
+  source = "./modules/kops"
 }
 
-module "cluster-vpc" {
-  source = "./modules/cluster-vpc"
+module "aws-vpc" {
+  source = "./modules/aws-vpc"
+  depends_on = [
+    module.kops
+  ]
+}
+
+# module "aws-vpc" {
+#   source = "./modules/aws-vpc"
+# }
+
+
+
+module "vpc-peering" {
+  source         = "./modules/vpc-peering"
+  rds_vpc_id     = module.aws-vpc.rds_vpc_id
+  cluster_vpc_id = module.kops.vpc_id
   depends_on = [
     module.aws-vpc
   ]
 }
 
-module "vpc-peering" {
-  source         = "./modules/vpc-peering"
-  rds_vpc_id     = module.aws-vpc.rds_vpc_id
-  cluster_vpc_id = module.cluster-vpc.cluster_vpc_id
-  depends_on = [
-    module.cluster-vpc
-  ]
-}
 
-module "kops" {
-  source = "./modules/kops"
-  depends_on = [
-    module.vpc-peering
-  ]
-}
 
 
 
