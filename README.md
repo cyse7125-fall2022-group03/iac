@@ -63,4 +63,3 @@ Run the following command to run the terraform file for creating resources
 terraform apply
 ```
 
-
