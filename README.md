@@ -36,12 +36,12 @@ terraform destroy -var="profile=profile" -var="s3_bucket_name=bucketname"
 apply:
 
 ```
-terraform apply -var='region=us-east-1' -var='profile=profile' -var="rds_vpc_cidr_block=10.0.0.0/16" -var="vpc_cidr_block=172.168.0.0/16" -var='database_name=dbname' -var='rds_private_subnet_cidr_blc_1=10.0.1.0/24' -var='rds_private_subnet_cidr_blc_2=10.0.2.0/24' -var='db_username=username' -var='db_password=password'
+terraform apply -var-file="terraform.tfvars"
 ```
 
 destroy:
 ```
-terraform destroy -var='region=us-east-1' -var='profile=profile' -var='setting.database.db_name=todo' -var='db_username=username' -var='db_password=password'
+terraform destroy -var-file="terraform.tfvars"
 ```
 
 #### Generic commands 
