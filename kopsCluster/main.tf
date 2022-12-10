@@ -102,10 +102,27 @@ resource "null_resource" "enable_service_usage_api" {
     command = "env"
   }
   provisioner "local-exec" {
-    command = "kops create cluster --name=${var.domain_name} --cloud=aws --master-zones=${var.zones} --zones=${var.zones} --node-count=3 --topology=private --networking=calico --node-size=${var.node_size} --kubernetes-version=1.22.15 --master-size=${var.master_size} --master-image=${var.ami-image-id} --node-image=${var.ami-image-id} --ssh-public-key=${var.ssh_public_key_path} --bastion=true --state=s3://${var.s3_bucket_name} --vpc=${aws_vpc.kops_vpc.id} --out=../iac/modules/kops --target=terraform --yes"
+    command = "kops create cluster --name=${var.domain_name} --cloud=aws --master-zones=${var.zones} --zones=${var.zones} --node-count=5 --topology=private --networking=calico --node-size=${var.node_size} --kubernetes-version=1.22.15 --master-size=${var.master_size} --master-image=${var.ami-image-id} --node-image=${var.ami-image-id} --ssh-public-key=${var.ssh_public_key_path} --bastion=true --state=s3://${var.s3_bucket_name} --vpc=${aws_vpc.kops_vpc.id} --out=../iac/modules/kops --target=terraform --yes"
   }
 
+  provisioner "local-exec" {
+    command = "kops edit cluster --name=${var.domain_name} --state=s3://${var.s3_bucket_name} --set spec.kubelet.authenticationTokenWebhook=true"
+  }
+
+  provisioner "local-exec" {
+    command = "kops edit cluster --name=${var.domain_name} --state=s3://${var.s3_bucket_name} --set spec.kubelet.authorizationMode=Webhook"
+  }
+  
+  # provisioner "local-exec" {
+  #   command = "kops update cluster --name=${var.domain_name} --state=s3://${var.s3_bucket_name} --yes"
+  # }
+
+  # provisioner "local-exec" {
+  #   command = "sleep 60"
+  # }  
+
+  # provisioner "local-exec" {
+  #   command = "kops validate cluster --wait 30m --count 1 --name=${var.domain_name} --state=s3://${var.s3_bucket_name}"
+  # }   
 
 }
-
-
